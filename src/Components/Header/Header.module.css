@@ -82,7 +82,7 @@ background-color:orange;
 }
 .search select{
 padding: 11px;
-   
+   background-color: #e6e6e6;
 }
 .order_container{
     display: flex;
