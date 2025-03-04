@@ -1,5 +1,6 @@
 import React from 'react'
 import classes from './Header.module.css';
+import {Link} from 'react-router-dom'
 import { CiLocationOn } from "react-icons/ci";
 import { BsSearch } from "react-icons/bs";
 import { BiCart } from "react-icons/bi";
@@ -11,12 +12,12 @@ function Header() {
       <section>
         <div className={classes.header_container}>
           <div className={classes.logo_container}>
-            <a href="#">
+            <Link to="/">
               <img
                 src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
                 alt="Amazon Logo"
               />
-            </a>
+            </Link>
             <div className={classes.delivery}>
               <span>
                 <CiLocationOn className={classes.location} />
@@ -45,20 +46,20 @@ function Header() {
                 <option value="">EN</option>
               </section>
             </a>
-            <a href="">
+            <Link to="/auth">
               <div>
                 <p>Sign In</p>
                 <span>Account & Lists</span>
               </div>
-            </a>
-            <a href="#">
+            </Link>
+            <Link to="/orders">
               <p>Returns</p>
               <span>& Orders</span>
-            </a>
-            <a href="#" className={classes.cart}>
+            </Link>
+            <Link to="/cart" className={classes.cart}>
               <BiCart size={35} />
               <span>0</span>
-            </a>
+            </Link>
           </div>
         </div>
       </section>
