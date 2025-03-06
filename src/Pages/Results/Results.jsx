@@ -35,7 +35,7 @@ function Results() {
               <ProductCard
                 key={product.id}
                 product={product}
-            
+                renderAdd={true}
               />
             ))
           ) : (
