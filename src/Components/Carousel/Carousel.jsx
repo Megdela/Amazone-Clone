@@ -1,12 +1,13 @@
-import React from 'react';
-import { Carousel } from 'react-responsive-carousel';
+import React from "react";
+import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { img } from "./img/data";
 import classes from "./Carsousel.module.css";
+import Layout from "../Layout/Layout";
 
 function CarouselEffect() {
   return (
-    <div>
+    <Layout>
       <Carousel
         autoPlay={true}
         infiniteLoop={true}
@@ -19,7 +20,7 @@ function CarouselEffect() {
         })}
       </Carousel>
       <div className={classes.hero_img}></div>
-    </div>
+    </Layout>
   );
 }
 
