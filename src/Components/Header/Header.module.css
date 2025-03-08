@@ -67,9 +67,10 @@ flex: 1;
 }
 
 .search  svg{
-    padding: 11px;
+    padding: 10px;
     background: #febd59;
     color:#1a1a1a;
+    font-size: 38px;
 
 }
 
