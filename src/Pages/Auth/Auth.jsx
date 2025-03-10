@@ -1,6 +1,6 @@
 import React, { useState,useContext } from 'react'
 import classes from './SignUp.module.css'
-import {Link, Navigate, useNavigate} from 'react-router-dom'
+import {Link, Navigate, useNavigate,useLocation} from 'react-router-dom'
 import {auth} from '../../Utility/firebase'
 import {signInWithEmailAndPassword,createUserWithEmailAndPassword} from 'firebase/auth'
 import {DataContext} from '../../Components/DataProvider/DataProvider'
@@ -12,6 +12,8 @@ function Auth() {
   const[error,setError]=useState('');
 const [{user},dispatch]=useContext(DataContext)
 const navigate=useNavigate();
+const navStateData = useLocation()
+console.log(navStateData);
 
 const [loading,setLoading]=useState({
   signIn:false,
@@ -31,7 +33,7 @@ signInWithEmailAndPassword(auth,email,password).then((userInfo)=>{
     user:userInfo.user
   });
  setLoading({ ...loading, signIn: false });
- navigate('/')
+ navigate(navStateData?.state?.redirect || '/')
 }).catch((err)=>{
     
     setError(
@@ -43,6 +45,7 @@ signInWithEmailAndPassword(auth,email,password).then((userInfo)=>{
 }
 else{
   setLoading({ ...loading, signUp: true });
+
    
 createUserWithEmailAndPassword(auth,email,password).then((userInfo)=>{
   
@@ -55,12 +58,13 @@ createUserWithEmailAndPassword(auth,email,password).then((userInfo)=>{
 }).catch((err)=>{
    setError(err.message);
      setLoading({ ...loading, signUp: false });
+      navigate(navStateData?.state?.redirect || "/");
 })
 }
 }
   return (
     <section className={classes.login}>
-      <Link to='/'>
+      <Link to="/">
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
           alt="Amazon Logo"
@@ -69,6 +73,19 @@ createUserWithEmailAndPassword(auth,email,password).then((userInfo)=>{
 
       <div className={classes.login_container}>
         <h1>Sign In</h1>
+        {navStateData?.state?.msg && (
+          <small
+            style={{
+              padding: "5px",
+              textAlign: "center",
+              color: "red",
+              fontWeight: "bold",
+            }}
+          >
+            {navStateData?.state?.msg}
+          </small>
+        )}
+
         <form action="">
           <div>
             <label htmlFor="email">Email</label>

@@ -80,7 +80,8 @@ const handlePayment = async (e) => {
     );
 
     setProcessing(false);
-    navigate('/orders',{state:msg:" You have placed new order"})
+navigate("/orders", { state: { msg: "You have placed a new order" } });
+
   } catch (error) {
     console.log(error);
     setProcessing(false);
