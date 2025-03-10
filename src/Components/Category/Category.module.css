@@ -23,12 +23,19 @@
     font-weight: bold;
     color: rgb(9, 132, 209);
 }
-.category_container{
+.category_container {
     position: relative;
     margin-top: -10%;
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Corrected minmax() */
+    max-width: 1600px;
     gap: 10px;
+    margin-right: auto;
+    margin-left: auto;
     place-items: center;
-    
+    padding: 20px; /* Adds spacing for smaller screens */
 }
+
+
+
+

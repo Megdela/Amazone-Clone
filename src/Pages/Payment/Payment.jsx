@@ -16,10 +16,12 @@ import { ClipLoader } from 'react-spinners';
 import { db } from '../../Utility/firebase';
 import { doc, collection, setDoc } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
+import { Type } from "../../Utility/action.type"; 
+
 
 
 function Payment() {
-  const [{ user, basket }] = useContext(DataContext);
+  const [{ user, basket },dispatch] = useContext(DataContext);
   const total = basket?.reduce(
     (amount, item) => item.price * item.amount + amount,
     0
@@ -78,6 +80,13 @@ const handlePayment = async (e) => {
         created: paymentIntent.created,
       }
     );
+
+    //empty the basket
+    dispatch(
+      {
+        type:Type.EMPTY_BASKET
+      }
+    )
 
     setProcessing(false);
 navigate("/orders", { state: { msg: "You have placed a new order" } });
